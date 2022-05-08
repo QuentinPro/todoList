@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+
     $db = null;
     function getConnexion(){
         $host = 'localhost';

@@ -2,14 +2,14 @@
 
     include('login.php');
 
-    $firstName = !empty($_POST) ? $_POST['firstname'] : null ;
-    $lastName = !empty($_POST) ? $_POST['lastname'] : null ;
-    $mail = !empty($_POST) ? $_POST['mail'] : null ;
-    $password = !empty($_POST) ? $_POST['password'] : null ;
-    $confirmPassword = !empty($_POST) ? $_POST['confirm_password'] : null ;
-    $created = date('Y-m-d H:i:s');
-
-    if($_POST){
+    if(!empty($_POST)){
+        $firstName = !empty($_POST) ? $_POST['firstname'] : null ;
+        $lastName = !empty($_POST) ? $_POST['lastname'] : null ;
+        $mail = !empty($_POST) ? $_POST['mail'] : null ;
+        $password = !empty($_POST) ? $_POST['password'] : null ;
+        $confirmPassword = !empty($_POST) ? $_POST['confirm_password'] : null ;
+        $created = date('Y-m-d H:i:s');
+        
         if(empty($lastName)){
             echo 'Veuillez renseigner votre nom';
         } else if(empty($firstName)){
@@ -25,7 +25,7 @@
         } else {
             insert($db, $firstName, $lastName, $mail, $password, $created);
             find_user($db, $mail, $password);
-            header('location: ../test.html');
+            header('location: ../index.php');
         }
     }
 

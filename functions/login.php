@@ -2,8 +2,10 @@
 
 include('database.php');
 
-$mail = !empty($_POST) ? $_POST['mail'] : null ;
-$password = !empty($_POST) ? $_POST['password'] : null ;
+if(!empty($_POST)){
+    $mail = !empty($_POST) ? $_POST['mail'] : null ;
+    $password = !empty($_POST) ? $_POST['password'] : null ;
+}
 
 find_user($db, $mail, $password);
 function find_user($db, $mail, $password){
@@ -16,7 +18,7 @@ function find_user($db, $mail, $password){
         $_SESSION['logged'] = true;
         $_SESSION['userName'] = $row['first_name'];
         $_SESSION['userId'] = $row['id'];
-        header('location: ../test.html');
+        header('location: ../index.php');
     }
 }
 
