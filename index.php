@@ -1,5 +1,8 @@
 <?php
     include "functions/tasks.php";
+    $task = isset($_GET['edit']) ? find_one_task($db, $_GET['edit']) : null;
+    $buttonValue = isset($_GET['edit']) ? "Modifier la tâche" : "Ajouter une tâche";
+    $action = !isset($_GET['edit']) ? 'functions/tasks.php' : 'functions/tasks.php?edit='.$_GET['edit'];
 ?>
 
 <!DOCTYPE html>
@@ -28,24 +31,35 @@
     <div class="introduction">
         C'est ici que vous pourrez créer et suivre vos tâches.
     </div>
-    <form action="functions/tasks.php" method="post">
-        <input type="text" name="name" placeholder="Nom de votre tâche" />
-        <input type="text" name="description" placeholder="Descriptif de votre tâche" />
+    <form action="<?=$action?>" method="post">
+        <input type="text" name="name" value="<?=$task['name']?>" placeholder="Nom de votre tâche"/>
+        <input type="text" name="description" value="<?=$task['description']?>" placeholder="Descriptif de votre tâche" />
         <select name="importance" id="importance">
-            <option value="Haute">Haute</option>
-            <option value="Moyenne">Moyenne</option>
-            <option value="Faible">Faible</option>
+        <?php
+            foreach ($importance_array as $value) {
+            $selected = $task['importance'] == $value ? 'selected' : null;
+        ?>
+            <option value="<?=$value?>" <?=$selected?>><?=$value?></option>
+        <?php 
+            } 
+        ?>
         </select>
         <select name="status" id="status">
-            <option value="En cours">En cours</option>
-            <option value="A faire">A faire</option>
-            <option value="Terminé">Terminé</option>
+        <?php
+            foreach ($status_array as $value) {
+            $selected = $task['status'] == $value ? 'selected' : null;
+        ?>
+            <option value="<?=$value?>" <?=$selected?>><?=$value?></option>
+        <?php 
+            } 
+        ?>
         </select>
-        <input type="submit" name="submit" value="Ajouter une tâche" />
+        <input type="submit" name="submit" value="<?=$buttonValue?>" />
     </form>
 
     <?php 
         $results = find_tasks($db, $_SESSION['userId']);
+        if(!isset($_GET['edit'])){
     ?>
     <table>
     <tr>
@@ -63,11 +77,13 @@
         <td><?= $value["description"]; ?></td>
         <td><?= $value["importance"]; ?></td>
         <td><?= $value["status"]; ?></td>
-        <td><a href="administration_product.php?edit=<?= $value["id"]; ?>"><i class="fa-solid fa-pen-to-square" title="Editer"></i></a> <a href="functions/tasks.php?delete=<?= $value["id"]; ?>"><i class="fa-solid fa-trash-can" title="Supprimer"></i></a></td>
+        <td><a href="index.php?edit=<?= $value["id"]; ?>"><i class="fa-solid fa-pen-to-square" title="Editer"></i></a> <a href="functions/tasks.php?delete=<?= $value["id"]; ?>"><i class="fa-solid fa-trash-can" title="Supprimer"></i></a></td>
     </tr>
     <?php 
         } 
+    }
     ?>
+    </table>
 
 </body>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
