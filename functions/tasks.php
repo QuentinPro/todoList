@@ -12,6 +12,9 @@ if(!empty($_POST)){
     $updated = date('Y-m-d H:i:s');
 }
 
+$importance_array = ['Haute', 'Moyenne', 'Faible'];
+$status_array = ['En cours', 'A faire', 'Terminé'];
+
 if(isset($name) && !empty($name) && isset($description) && !empty($description)){
     if(!isset($_GET['edit'])){
         insert($db, $name, $description, $importance, $status, $created, $updated, $user);
@@ -51,11 +54,11 @@ function insert($db, $name, $description, $importance, $status, $created, $updat
     $request->execute([$name, $description, $importance, $status, $created, $updated, $user]);
 }
 
-// function update($db, $name, $price, $size, $target, $description, $id){
-//     $request_string = "UPDATE shoes SET name = '$name', price = '$price', size = '$size', image = '$target', description = '$description' WHERE id = '$id'";
-//     $request = $db->prepare($request_string);
-//     $request->execute([$name, $name, $price, $size, $target, $description]);
-// }
+function update($db, $name, $description, $importance, $status, $updated, $id){
+    $request_string = "UPDATE tasks SET name = '$name', description = '$description', importance = '$importance', status = '$status', updated = '$updated' WHERE id = '$id'";
+    $request = $db->prepare($request_string);
+    $request->execute([$name, $description, $importance, $status, $updated]);
+}
 
 function delete($db, $id){
     $request_string = "DELETE FROM tasks WHERE id = '$id'";
