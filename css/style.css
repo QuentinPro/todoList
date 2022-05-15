@@ -1,0 +1,40 @@
+.title{
+    text-align: center;
+    font-weight: bold;
+}
+
+form{
+    margin: auto;
+    text-align: center;
+}
+
+.account_creation{
+    display: block;
+    text-align: center;
+}
+
+.introduction, .login_redirect, .welcome_message{
+    text-align: center;
+}
+
+input{
+    border-radius: 2em;
+    padding: .5em;
+}
+
+input[type="submit"]{
+    background-color: aqua;
+    margin-top: 1em;
+}
+
+body{
+    background-color: #f0e1ce!important;
+}
+
+table{
+    text-align: center;
+    margin: auto;
+    margin-top: 1em;
+    border-collapse: separate!important;
+    border-spacing: 1em!important;
+}

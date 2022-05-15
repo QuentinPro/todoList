@@ -1,4 +1,5 @@
 <?php
+    // if (!$_SESSION) header('location: login.html');
     include "functions/tasks.php";
     $task = isset($_GET['edit']) ? find_one_task($db, $_GET['edit']) : null;
     $buttonValue = isset($_GET['edit']) ? "Modifier la tâche" : "Ajouter une tâche";
@@ -25,8 +26,9 @@
  </head>
 <body>
     <header>
-        Bonjour <span><?php echo $_SESSION['userName']; ?></span>
-        <a href="functions/logout.php">Se déconnecter</a>
+        <h1 class="title">My todo</h1>
+        <p class="welcome_message">Bonjour <span><?php echo $_SESSION['userName']; ?></span> <a href="functions/logout.php">Se déconnecter</a>
+</p>
     </header>
     <div class="introduction">
         C'est ici que vous pourrez créer et suivre vos tâches.
