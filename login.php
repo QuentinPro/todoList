@@ -15,17 +15,16 @@
 	
  </head>
 <body>
-	<header>
-        <h1 class="title">My todo</h1>
-		<p class="introduction">Votre plateforme de gestion de tâches</p>
-        <form action="functions/login.php" method="post">
-            <input type="email" name="mail" placeholder="Votre adresse mail" />
-            <input type="password" name="password" placeholder="Votre mot de passe">
-			<br>
-            <input class="connection" type="submit" value="Se connecter">
-        </form>
-        <a class="account_creation" href="new_account.html">Créer un compte</a>
-	</header>
+	<?php
+    include "header.php";
+    ?>
+	<form action="functions/login.php" method="post">
+		<input type="email" name="mail" placeholder="Votre adresse mail" />
+		<input type="password" name="password" placeholder="Votre mot de passe">
+		<br>
+		<input class="connection" type="submit" value="Se connecter">
+	</form>
+	<a class="account_creation" href="new_account.php">Créer un compte</a>
 
 </body>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
