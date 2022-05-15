@@ -25,11 +25,12 @@
 	
  </head>
 <body>
-    <header>
-        <h1 class="title">My todo</h1>
-        <p class="welcome_message">Bonjour <span><?php echo $_SESSION['userName']; ?></span> <a href="functions/logout.php">Se déconnecter</a>
-</p>
-    </header>
+    <?php
+    if(!isset($_SESSION['logged'])){
+        header('location: login.php');
+    }
+    include "header.php";
+    ?>
     <div class="introduction">
         C'est ici que vous pourrez créer et suivre vos tâches.
     </div>
@@ -86,6 +87,13 @@
     }
     ?>
     </table>
+    <?php 
+    if(isset($_GET['edit'])){
+    ?>
+    <p><a href="index.php">Retour sur la liste</a></p>
+    <?php
+    }
+    ?>
 
 </body>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
