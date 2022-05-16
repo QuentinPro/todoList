@@ -20,6 +20,7 @@
     ?>
     <form action="functions/register.php" method="post">
         <input type="text" name="firstname" placeholder="Votre prénom" />
+        <span class="error">bite</span>
         <input type="text" name="lastname" placeholder="Votre nom de famille" />
         <input type="email" name="mail" placeholder="Votre adresse mail" />
         <input type="password" name="password" placeholder="Votre mot de passe">
