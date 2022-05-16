@@ -7,7 +7,11 @@ if(!empty($_POST)){
     $password = !empty($_POST) ? $_POST['password'] : null ;
 }
 
-find_user($db, $mail, $password);
+if(!empty($mail) && !empty($password)){
+    find_user($db, $mail, $password);
+} else {
+    header('location: ../login.php');
+}
 function find_user($db, $mail, $password){
     $request_string = "SELECT * FROM user WHERE mail_adress =:mail_adress AND password =:password";
     $request = $db->prepare($request_string);

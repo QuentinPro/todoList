@@ -24,7 +24,7 @@
 		<br>
 		<input class="connection" type="submit" value="Se connecter">
 	</form>
-	<a class="account_creation" href="new_account.php">Créer un compte</a>
+	<a class="account_creation" href="register.php">Créer un compte</a>
 
 </body>
 <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
