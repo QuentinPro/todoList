@@ -23,6 +23,8 @@ function find_user($db, $mail, $password){
         $_SESSION['userName'] = $row['first_name'];
         $_SESSION['userId'] = $row['id'];
         header('location: ../index.php');
+    } else {
+        header('location: ../login.php');
     }
 }
 
