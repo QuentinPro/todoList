@@ -1,5 +1,6 @@
 <?php
 
+// database connection + session start
     session_start();
 
     $db = null;
