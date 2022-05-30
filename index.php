@@ -26,6 +26,7 @@
  </head>
 <body>
     <?php
+    // can't access to this page if not logged in
     if(!isset($_SESSION['logged'])){
         header('location: login.php');
     }
@@ -39,7 +40,9 @@
         <input type="text" name="description" value="<?=$task['description']?>" placeholder="Descriptif de votre tâche" />
         <select name="importance" id="importance">
         <?php
+        // short way to init the select input
             foreach ($importance_array as $value) {
+                // case edit task, find the selected one
             $selected = $task['importance'] == $value ? 'selected' : null;
         ?>
             <option value="<?=$value?>" <?=$selected?>><?=$value?></option>
@@ -49,7 +52,9 @@
         </select>
         <select name="status" id="status">
         <?php
+        // short way to init the select input
             foreach ($status_array as $value) {
+                 // case edit task, find the selected one
             $selected = $task['status'] == $value ? 'selected' : null;
         ?>
             <option value="<?=$value?>" <?=$selected?>><?=$value?></option>
@@ -61,6 +66,7 @@
     </form>
 
     <?php 
+    // init the table with user's tasks
         $results = find_tasks($db, $_SESSION['userId']);
         if(!isset($_GET['edit'])){
     ?>
@@ -73,6 +79,7 @@
         <th>Actions</th>
     </tr>
     <?php
+    // get the values from the existing tasks
         foreach ($results as $value) {
     ?>
     <tr style="text-align:center">
@@ -88,6 +95,7 @@
     ?>
     </table>
     <?php 
+    // case edit, redirect in the main page
     if(isset($_GET['edit'])){
     ?>
     <p><a href="index.php">Retour sur la liste</a></p>
